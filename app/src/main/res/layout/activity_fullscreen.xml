@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:background="@drawable/bg_navigation"
-            android:orientation="horizontal"
-            tools:ignore="@color/black_overlay">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/dummy_starters"
@@ -33,6 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/colorTextNav"
                 android:text="@string/dummy_starters"
                 android:drawableLeft="@drawable/ic_startes"
                 android:textSize="8sp" />
