@@ -8,6 +8,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
+
+import restauran.lebasillic.menurestaurant.fragments.ScreenSlidePageFragment;
+import restauran.lebasillic.menurestaurant.fragments.ScreenSlidePageFragment2;
+import restauran.lebasillic.menurestaurant.views.VerticalViewPager;
+
+import static restauran.lebasillic.menurestaurant.configuracion.NUM_PAGES;
 
 /**
  * Created by icanul on 2/14/17.
@@ -17,13 +24,13 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 6;
+
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
      */
-    private ViewPager mPager;
+    private VerticalViewPager mPager;
 
     /**
      * The pager adapter, which provides the pages to the view pager widget.
@@ -36,11 +43,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         setContentView(R.layout.activity_screen_slide);
 
         // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = (VerticalViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mPager.setAdapter(mPagerAdapter);
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -71,14 +79,17 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
             //d.putInt("color",R.color.colorPrimary);
 
             //pageFragment.setArguments(d);
-            if(position==2){
-                Log.e("asdad0", String.valueOf(position));
-                ScreenSlidePageFragment2 pageFragment2 = new ScreenSlidePageFragment2();
-                return pageFragment2;
-            }else{
-                ScreenSlidePageFragment pageFragment = new ScreenSlidePageFragment();
-                return pageFragment;
-            }
+//            if(position==2){
+//                Log.e("asdad0", String.valueOf(position));
+//                ScreenSlidePageFragment2 pageFragment2 = new ScreenSlidePageFragment2();
+//                return pageFragment2;
+//            }else{
+//                ScreenSlidePageFragment pageFragment = new ScreenSlidePageFragment();
+//                return pageFragment;
+//            }
+
+            ScreenSlidePageFragment pageFragment = new ScreenSlidePageFragment();
+            return pageFragment;
 
 
         }
@@ -90,4 +101,6 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         }
     }
+
+
 }

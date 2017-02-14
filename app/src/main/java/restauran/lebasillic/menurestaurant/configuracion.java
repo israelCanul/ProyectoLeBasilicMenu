@@ -7,5 +7,6 @@ package restauran.lebasillic.menurestaurant;
 public final class configuracion {
     static final boolean footerFixed = true;
     static final boolean headerFixed = true;
+    public static final int NUM_PAGES = 6;
 
 }

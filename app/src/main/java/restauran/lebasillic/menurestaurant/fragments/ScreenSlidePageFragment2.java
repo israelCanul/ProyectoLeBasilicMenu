@@ -1,5 +1,4 @@
-package restauran.lebasillic.menurestaurant;
-
+package restauran.lebasillic.menurestaurant.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,16 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import restauran.lebasillic.menurestaurant.R;
 
 
 /**
  * Created by icanul on 2/14/17.
  */
 
-public class ScreenSlidePageFragment extends Fragment {
+public class ScreenSlidePageFragment2 extends Fragment {
 
 
-    private String TAG = "ScreenSlidePageFragment";
+    private String TAG = "ScreenSlidePageFragment2";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,14 +27,12 @@ public class ScreenSlidePageFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             myInt = bundle.getInt("color",0);
-            Log.e(TAG, String.valueOf(myInt));
+
         }
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate( R.layout.fragment_screen_slide_page, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate( R.layout.fragment_screen_slide_page2, container, false);
         rootView.setBackgroundColor(myInt);
 
         return rootView;
     }
 }
-
-
