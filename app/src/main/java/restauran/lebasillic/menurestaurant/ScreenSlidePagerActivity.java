@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import restauran.lebasillic.menurestaurant.fragments.ScreenSlidePageFragment;
 import restauran.lebasillic.menurestaurant.fragments.ScreenSlidePageFragment2;
@@ -83,6 +84,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
      */
     private VerticalViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    private String TAG = "prueba";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (VerticalViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
+       mPager.setAdapter(mPagerAdapter);
 
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.header);
@@ -110,6 +112,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         delayedHide(100);
     }
 
@@ -136,35 +144,35 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public void finishUpdate(ViewGroup container) {
+            super.finishUpdate(container);
+            Log.i(TAG, "finishUpdate: ");
+            show();
+        }
 
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Log.i(TAG, "instantiateItem: "+position);
+            return super.instantiateItem(container, position);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
             //Bundle d = new Bundle();
             //d.putInt("color",R.color.colorPrimary);
-
-            //pageFragment.setArguments(d);
-//            if(position==2){
-//                Log.e("asdad0", String.valueOf(position));
-//                ScreenSlidePageFragment2 pageFragment2 = new ScreenSlidePageFragment2();
-//                return pageFragment2;
-//            }else{
-//                ScreenSlidePageFragment pageFragment = new ScreenSlidePageFragment();
-//                return pageFragment;
-//            }
-
+            Log.i(TAG, "getItem: "+position);
             ScreenSlidePageFragment pageFragment = new ScreenSlidePageFragment();
+
             return pageFragment;
-
-
         }
 
         @Override
         public int getCount() {
-
             return NUM_PAGES;
-
         }
     }
     private void toggle() {
+        mPager.setCurrentItem(5);
         if (mVisible) {
             hide();
         } else {
@@ -195,6 +203,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
 
+        Log.i(TAG, "show: ");
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, 10000);
     }

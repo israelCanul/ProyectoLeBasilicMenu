@@ -6,4 +6,9 @@
     <string name="dummy_starters">Starters</string>
     <string name="lorem_ipsum">Vamos a bailar algo que esta perron </string>
     <string name="lorem_ipsum2">ssssssqweqweqwweqweqweqweqweqweqweqweqweqw </string>
+    <string name="dummy_from_sea">From the sea</string>
+    <string name="dummy_meat">Meat</string>
+    <string name="dummy_desserts">Desserts</string>
+    <string name="dummy_granmenu">Le Grand Menu</string>
+    <string name="dummy_liqueurs">Liqueurs</string>
 </resources>
