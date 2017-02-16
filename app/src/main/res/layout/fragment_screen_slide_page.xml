@@ -1,23 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="60dp"
     android:background="@drawable/bg_view">
 
-    <ScrollView
-        android:id="@+id/content"
+    <TextView
+        android:text="Titulo de categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/text_categoria"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+        android:fontFamily="cursive"
+        android:textSize="55dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:elevation="1dp"
+        android:id="@+id/items_recView"
+         android:layout_width="match_parent"
+        android:layout_below="@+id/text_categoria"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_height="750dp"
+        android:accessibilityLiveRegion="none"
+        android:nestedScrollingEnabled="false" />
+
+    <TextView
+        android:text="*The listed prices are in mexican pesos, tax included"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/items_recView"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+        android:textAlignment="center"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:elevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_view">
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
-        <TextView
-            android:padding="16dp"
-            android:lineSpacingMultiplier="1.2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_ipsum"
-            android:gravity="center_vertical|fill_vertical" />
-    </ScrollView>
-
-</LinearLayout>
+</RelativeLayout>
 

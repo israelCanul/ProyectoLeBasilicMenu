@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,15 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
 
 import restauran.lebasillic.menurestaurant.fragments.ScreenSlidePageFragment;
 import restauran.lebasillic.menurestaurant.fragments.ScreenSlidePageFragment2;
@@ -26,7 +36,10 @@ import static restauran.lebasillic.menurestaurant.configuracion.NUM_PAGES;
  */
 
 public class ScreenSlidePagerActivity extends FragmentActivity {
+    // Write a message to the database
 
+
+    Button starter,sea,meat,desserts,menu,liqueurs;
     private static final boolean AUTO_HIDE = true;
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -84,6 +97,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
      */
     private VerticalViewPager mPager;
     private PagerAdapter mPagerAdapter;
+
     private String TAG = "prueba";
 
     @Override
@@ -96,7 +110,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (VerticalViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-       mPager.setAdapter(mPagerAdapter);
+
+        mPager.setAdapter(mPagerAdapter);
+
 
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.header);
@@ -107,12 +123,59 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 toggle();
             }
         });
+
+        starter = (Button) findViewById(R.id.dummy_starters);
+        sea = (Button) findViewById(R.id.dummy_fromsea);
+        meat = (Button) findViewById(R.id.dummy_meat);
+        desserts = (Button) findViewById(R.id.dummy_desserts);
+        menu = (Button) findViewById(R.id.dummy_granmenu);
+        liqueurs = (Button) findViewById(R.id.dummy_liqueur);
+
+        starter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPager.setCurrentItem(0);
+            }
+        });
+        sea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPager.setCurrentItem(2);
+            }
+        });
+        meat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPager.setCurrentItem(3);
+            }
+        });
+        desserts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPager.setCurrentItem(4);
+            }
+        });
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPager.setCurrentItem(5);
+            }
+        });
+        liqueurs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPager.setCurrentItem(6);
+            }
+        });
+
+
+
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
+        delayedHide(100);
     }
 
     @Override
@@ -138,41 +201,41 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
      * sequence.
      */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public void finishUpdate(ViewGroup container) {
             super.finishUpdate(container);
             Log.i(TAG, "finishUpdate: ");
             show();
         }
-
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             Log.i(TAG, "instantiateItem: "+position);
             return super.instantiateItem(container, position);
         }
-
         @Override
         public Fragment getItem(int position) {
-            //Bundle d = new Bundle();
-            //d.putInt("color",R.color.colorPrimary);
-            Log.i(TAG, "getItem: "+position);
+            Bundle d = new Bundle();
+            d.putInt("item",position);
+
             ScreenSlidePageFragment pageFragment = new ScreenSlidePageFragment();
+            pageFragment.setArguments(d);
 
             return pageFragment;
         }
-
         @Override
         public int getCount() {
             return NUM_PAGES;
         }
     }
+
+
+
+
     private void toggle() {
-        mPager.setCurrentItem(5);
+
         if (mVisible) {
             hide();
         } else {

@@ -16,13 +16,14 @@ public class VerticalViewPager extends ViewPager {
         init();
     }
 
+
     public VerticalViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
     private void init() {
-        setPageTransformer(true, new VerticalPageTransformer());
+        setPageTransformer(true, new VerticalPageTransformer2());
 
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
@@ -43,13 +44,13 @@ public class VerticalViewPager extends ViewPager {
              /*para el efecto alpha en la transicion */
 
             if (position < -1) {
-                view.setAlpha(0);
+
                 view.setAlpha(0);
             } else if (position <= 1) {
-                /*para el efecto alpha en la transicion */
+                /*para el efecto alpha en la transicion
                 float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
                 float vertMargin = pageHeight * (1 - scaleFactor) / 2;
-                float horzMargin = pageWidth * (1 - scaleFactor) / 2;
+                float horzMargin = pageWidth * (1 - scaleFactor) / 2;*/
                 /*para el efecto alpha en la transicion */
 
 
@@ -57,13 +58,13 @@ public class VerticalViewPager extends ViewPager {
 
                 float yPosition = position * view.getHeight();
                 view.setTranslationY(yPosition);
+                view.setAlpha(1);
 
-
-                 /*para el efecto alpha en la transicion */
+                 /*para el efecto alpha en la transicion
                 // Fade the page relative to its size.
                 view.setAlpha(MIN_ALPHA +
                         (scaleFactor - MIN_SCALE) /
-                                (1 - MIN_SCALE) * (1 - MIN_ALPHA));
+                                (1 - MIN_SCALE) * (1 - MIN_ALPHA));*/
                  /*para el efecto alpha en la transicion */
             } else {
                 view.setAlpha(0);
@@ -71,6 +72,31 @@ public class VerticalViewPager extends ViewPager {
         }
     }
 
+    private class VerticalPageTransformer2 implements ViewPager.PageTransformer {
+
+        @Override
+        public void transformPage(View view, float position) {
+
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
+                view.setAlpha(0);
+
+            } else if (position <= 1) { // [-1,1]
+                view.setAlpha(1);
+
+                // Counteract the default slide transition
+                view.setTranslationX(view.getWidth() * -position);
+
+                //set Y position to swipe in from top
+                float yPosition = position * view.getHeight();
+                view.setTranslationY(yPosition);
+
+            } else { // (1,+Infinity]
+                // This page is way off-screen to the right.
+                view.setAlpha(0);
+            }
+        }
+    }
 
 
     @Override
@@ -80,7 +106,7 @@ public class VerticalViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(swapXY(ev));
+        return true;
     }
 
     private MotionEvent swapXY(MotionEvent ev) {

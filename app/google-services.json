@@ -1,58 +1,27 @@
 {
   "project_info": {
-    "project_number": "711916397940",
-    "firebase_url": "https://coverflow-ec3bb.firebaseio.com",
-    "project_id": "coverflow-ec3bb",
-    "storage_bucket": "coverflow-ec3bb.appspot.com"
+    "project_number": "90545753835",
+    "firebase_url": "https://menurestaurant-2c3d0.firebaseio.com",
+    "project_id": "menurestaurant-2c3d0",
+    "storage_bucket": "menurestaurant-2c3d0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:711916397940:android:0120e6e6378f80a0",
-        "android_client_info": {
-          "package_name": "com.restaurants.menu.gallery"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "711916397940-84iq5gja0uca1sruhscevk5l91jo26ge.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAzvInhPv9l2SeMCMT90DjYJgKh1qme3FI"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:711916397940:android:24eeb34f6bee44c6",
+        "mobilesdk_app_id": "1:90545753835:android:24eeb34f6bee44c6",
         "android_client_info": {
           "package_name": "restauran.lebasillic.menurestaurant"
         }
       },
       "oauth_client": [
         {
-          "client_id": "711916397940-84iq5gja0uca1sruhscevk5l91jo26ge.apps.googleusercontent.com",
+          "client_id": "90545753835-ttclgu6v3547bkdrm7fmi0aduhs1q0oc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAzvInhPv9l2SeMCMT90DjYJgKh1qme3FI"
+          "current_key": "AIzaSyAB4ltmBu6jYeT-IRLe5X6GFuANFwxpXvE"
         }
       ],
       "services": {
